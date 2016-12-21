@@ -1,15 +1,15 @@
 #include "header.h"
 
-int main(int ac, char **av)
+/**
+ * main - basic structure function for the simple shell
+ * Return: returns 0
+ */
+int main(void)
 {
 	char *buffer, *argv[1024];
-	int i, status;
-	int c = 1;
 	size_t size = 1024;
-	pid_t pid;
-	(void)ac;
 
-	while (c != EOF)
+	while (1)
 	{
 		buffer = malloc(sizeof(char) * size);
 		if (buffer == NULL)
@@ -18,37 +18,11 @@ int main(int ac, char **av)
 			exit(1);
 		}
 
-		printf("$ ");
-		c = getline(&buffer, &size, stdin);
-		if (c == EOF)
-		{
-			printf("\n");
-			free(buffer);
-			exit(0);
-		}
-		argv[0] = strtok(buffer, " \t\n");
-		for (i = 1; argv[i - 1] != NULL; ++i)
-		{
-			argv[i] = strtok(NULL, " \t\n");
-		}
-		--i;
+		printf("wtf$ ");
 
-		pid = fork();
-		if (pid == -1)
-		{
-			perror("Errors");
-			exit(-1);
-		}
-		if (pid == 0)
-		{
-			if (execve(argv[0], argv, NULL) == -1)
-			{
-				perror(av[0]);
-			}
-			exit(0);
-		}
-
-		wait(&status);
+		_getline(&buffer, &size);
+		_strtok(buffer, argv);
+		_exe(argv);
 	}
 	free(buffer);
 	return (0);
