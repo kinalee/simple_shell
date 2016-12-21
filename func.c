@@ -48,21 +48,22 @@ void _exe(char **argv)
 	if (_strcmp(argv[0], "exit") == 0)
 		exit(0);
 
-	if (_strcmp(argv[0], "env") == 0)
-	    _env();
-
-
 	pid = fork();
 	if (pid < 0)
 	{
 		printf("\n");
-		_exit(-1);
+		_exit(99);
 	}
 	if (pid == 0)
 	{
 		cmd = pars_path_dir(argv[0]);
 		if (fileExists(cmd) == 0)
 		{
+			if (_strcmp(argv[0], "env") == 0)
+			{
+				_env();
+				_exit(0);
+			}
 			if (execve(cmd, argv, environ) < 0)
 			{
 				printf("%s: command not found\n", argv[0]);
