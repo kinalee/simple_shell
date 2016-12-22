@@ -1,6 +1,6 @@
 #Simple Shell
 
-This program was written for a group project assignment at Holberton School. Simple Shell imitates linux shell programs, which takes commands from the keyboard and passes them to the operation system. Simple shell is capable of handling basic commands.
+This program was written for a group project assignment at Holberton School. Simple Shell imitates linux shell programs, which take commands from the keyboard and pass them to the operation system. Simple shell is capable of handling basic commands.
 
 ##How to run
 Run the follwing command in your terminal
