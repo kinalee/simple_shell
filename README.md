@@ -31,5 +31,7 @@ Exiting from Simple Shell
 exit
 ```
 
+or run `Ctrl+D`
+
 ##Authors
 Colton Walker and Kina Lee
