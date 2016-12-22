@@ -18,7 +18,7 @@ int main(void)
 			exit(1);
 		}
 
-		printf("wtf$ ");
+		write(STDOUT_FILENO, "cisfun$ ", 8);
 
 		_getline(&buffer, &size);
 		_strtok(buffer, argv);

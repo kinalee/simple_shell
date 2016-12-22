@@ -13,7 +13,7 @@ void _getline(char **buffer, size_t *size)
 	c = getline(buffer, size, stdin);
 	if (c == EOF)
 	{
-		printf("\n");
+		write(STDOUT_FILENO, "\n", 2);
 		free(*buffer);
 		_exit(0);
 	}
@@ -41,13 +41,11 @@ void _strtok(char *buffer, char **argv)
  */
 void _exe(char **argv)
 {
-	int status;
-	char *cmd;
-	pid_t pid;
+	int status, len; char *cmd; pid_t pid;
 
+	len = _strlen(argv[0]);
 	if (_strcmp(argv[0], "exit") == 0)
 		exit(0);
-
 	pid = fork();
 	if (pid < 0)
 	{
@@ -66,7 +64,8 @@ void _exe(char **argv)
 			}
 			if (execve(cmd, argv, environ) < 0)
 			{
-				printf("%s: command not found\n", argv[0]);
+				write(STDOUT_FILENO, argv[0], len);
+				write(STDOUT_FILENO, ": command not found\n", 20);
 				_exit(0);
 			}
 		}
@@ -74,7 +73,8 @@ void _exe(char **argv)
 		{
 			if (execve(argv[0], argv, environ) < 0)
 			{
-				printf("%s: command not found\n", argv[0]);
+				write(STDOUT_FILENO, argv[0], len);
+				write(STDOUT_FILENO, ": command not found\n", 20);
 				_exit(0);
 			}
 		}
@@ -89,8 +89,12 @@ void _exe(char **argv)
  */
 void _env(void)
 {
-        int i;
+	int i, len;
 
-        for(i = 0; environ[i] != NULL; ++i)
-		printf("%s\n", environ[i]);
+	for (i = 0; environ[i] != NULL; ++i)
+	{
+		len = _strlen(environ[i]);
+		write(STDOUT_FILENO, environ[i], len);
+		write(STDOUT_FILENO, "\n", 2);
+	}
 }

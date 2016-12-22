@@ -1,12 +1,14 @@
 #include "header.h"
 
 /**
- * @fileExists: check if a file exists
+ * fileExists - check if a file exists
+ * @file: given file name
  * Return: true if and only if the file exists, false else
  */
 int fileExists(const char *file)
 {
 	struct stat buf;
+
 	if (stat(file, &buf) == 0)
 		return (0);
 

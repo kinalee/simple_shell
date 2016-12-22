@@ -15,9 +15,11 @@ void _getline(char **buffer, size_t *size);
 void _strtok(char *buffer, char **argv);
 void _exe(char **argv);
 char *_strcat(char *dest, char *src);
+char *_strdup(char *str);
 int _strcmp(char *s1, char *s2);
 char *pars_path_dir(char *argv);
 int fileExists(const char *file);
+int _strlen(char *str);
 void _env(void);
 
 #endif
