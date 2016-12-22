@@ -30,3 +30,6 @@ Exiting from Simple Shell
 ```
 exit
 ```
+
+##Authors
+Colton Walker and Kina Lee
